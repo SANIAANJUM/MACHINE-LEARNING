@@ -1,9 +1,13 @@
+
+
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 import matplotlib.pyplot as plt
 import os
+
 print(os.listdir("../python"))
+
 
 
 train_df = pd.read_csv('../python/train.csv')
@@ -18,8 +22,11 @@ train_df.shape
 digits = train_df.drop(['label'], 1).values
 digits = digits / 255
 label = train_df['label'].values
+
+
 # Show 25 digits of data
 fig, axis = plt.subplots(5, 5, figsize=(22, 20))
+
 
 for i, ax in enumerate(axis.flat):
     ax.imshow(digits[i].reshape(28, 28), cmap='binary')
@@ -29,14 +36,18 @@ for i, ax in enumerate(axis.flat):
 # Machine Learning
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+
 digits.shape
 
 
 X = digits
 y = label
+
+
 #X_test = test_df.values # file data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 from sklearn.ensemble import RandomForestClassifier
+
 
 # Seting our model
 model = RandomForestClassifier(n_estimators=1000, max_depth=10, min_samples_split=10)
